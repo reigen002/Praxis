@@ -1,0 +1,16 @@
+.venv/
+.env
+.env.*
+!.env.example
+.cache/
+.vite/
+.tools/
+.tmp/
+__pycache__/
+.pytest_cache/
+*.pyc
+artifacts/
+.streamlit/secrets.toml
+frontend/node_modules/
+frontend/dist/
+frontend/*.tsbuildinfo

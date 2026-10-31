@@ -1,0 +1,28 @@
+[project]
+name = "praxis"
+version = "0.1.0"
+description = "Evidence-backed AI Chief of Staff for synthetic startup operations"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "crewai[anthropic]>=1.15.0,<1.16",
+  "streamlit>=1.50,<2",
+  "pydantic>=2.11,<3",
+  "httpx>=0.28,<1",
+  "python-dotenv>=1.1,<2",
+  "fastapi>=0.115,<1",
+  "uvicorn>=0.30,<1",
+]
+
+[dependency-groups]
+dev = ["pytest>=8.4,<10"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["live: requires configured provider credentials and network access"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/praxis"]

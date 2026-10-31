@@ -1,0 +1,52 @@
+[
+  {
+    "record_id": "INC-001",
+    "classification": "Engineering",
+    "urgency": "Critical"
+  },
+  {
+    "record_id": "OPS-001",
+    "classification": "Operations",
+    "urgency": "Time Sensitive"
+  },
+  {
+    "record_id": "SALE-001",
+    "classification": "Sales",
+    "urgency": "Time Sensitive"
+  },
+  {
+    "record_id": "FEAT-001",
+    "classification": "Engineering",
+    "urgency": "Routine"
+  },
+  {
+    "record_id": "CAN-001",
+    "classification": "Customer Success",
+    "urgency": "Time Sensitive"
+  },
+  {
+    "record_id": "FIN-001",
+    "classification": "Finance",
+    "urgency": "Time Sensitive"
+  },
+  {
+    "record_id": "UPD-001",
+    "classification": "Operations",
+    "urgency": "Routine"
+  },
+  {
+    "record_id": "DONE-001",
+    "classification": "Engineering",
+    "urgency": "Routine"
+  },
+  {
+    "record_id": "NOTE-003",
+    "classification": "Human Review",
+    "urgency": "Routine"
+  },
+  {
+    "record_id": "SALE-003",
+    "classification": "Sales",
+    "urgency": "Needs Attention"
+  }
+]
