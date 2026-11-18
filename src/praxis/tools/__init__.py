@@ -1,5 +1,6 @@
 """Business arithmetic and retrieval: independent of any LLM."""
 from decimal import Decimal
+from typing import get_args
 from praxis.schemas import (Dataset, RecordResult, Metrics, DeadlineResult,
     DeadlineRisk, Escalation, EscalationResult, Event, Category,
     OperatingSnapshot, SnapshotMetrics, UpdateSummary)
@@ -29,6 +30,8 @@ class BusinessTools:
             source_ids=records.source_ids))
 
     def get_business_updates(self, category: Category | None = None, status: str | None = None):
+        if category not in (None, *get_args(Category)):
+            raise ValueError('Unsupported category filter')
         if status not in (None, 'open', 'blocked', 'completed', 'cancelled'):
             raise ValueError('Unsupported status filter')
         rows = [r for r in self.dataset.records if (category is None or r.category == category)
@@ -78,7 +81,7 @@ class BusinessTools:
             missing_financial_ids=sorted(set(missing)), source_ids=sources, cohorts=cohorts, definitions=definitions))
 
     def get_deadline_risks(self, window_days: int = 7):
-        if not 0 <= window_days <= 90:
+        if type(window_days) is not int or not 0 <= window_days <= 90:
             raise ValueError('Window must be between zero and ninety days')
         risks = []
         for row in self.dataset.records:

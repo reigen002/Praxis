@@ -253,6 +253,23 @@ versions are recorded in `frontend/package-lock.json`.
   screenshots, checks the UI, and makes at most one Rules/Groq run with JEV blocked.
 - [Tests and live verification](docs/VERIFICATION.md)
 
+## Repeatable agent evaluation
+
+Run the versioned 36-case offline suite without credentials or provider calls:
+
+```powershell
+uv run --frozen --offline --cache-dir .cache/uv python -m praxis.evaluation --output artifacts/evaluation/latest
+```
+
+This writes JSON and Markdown reports, including per-case failure reasons, numeric
+and citation checks, escalation recall, tool contracts and acceptance/rejection
+behavior. Exit code 1 fails the regression gate. Offline candidates are authored
+test inputs, never labeled live model output. Live evaluation requires explicit
+`--mode live --allow-live` plus named eligible cases and always disables JEV.
+
+See [methodology and commands](docs/EVALUATION.md) and
+[measured baseline/update results](docs/EVALUATION_RESULTS.md).
+
 Official references: [CrewAI docs](https://docs.crewai.com/),
 [CrewAI source](https://github.com/crewAIInc/crewAI),
 [uv](https://docs.astral.sh/uv/), [JEV](https://jev-ai.org/docs/).

@@ -9,6 +9,11 @@ class OutputRejected(ValueError):
 
 
 def check_prose(text: str, valid_ids=()):
+    # Praxis has no external mutation tools. Reject narrow claims that it already
+    # performed an action. This lexical check is not general semantic verification.
+    if re.search(r'\b(?:I|we|Praxis|the assistant)\s+(?:(?:have|has|already)\s+)*'
+            r'(?:sent|emailed|deleted|transferred|paid|cancelled|canceled|closed)\b', text, re.IGNORECASE):
+        raise OutputRejected('Do not claim an external action was performed; propose a draft for human review.')
     # Numeric facts belong in deterministic metrics/evidence, never generated prose.
     # This conservative lexical check is not a semantic entailment verifier.
     identifiers = re.findall(r'\b[A-Z]+-\d{3}\b', text)

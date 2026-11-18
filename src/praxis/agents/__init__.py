@@ -2,6 +2,7 @@
 import json
 from time import monotonic
 from typing import Any, get_args
+from pydantic import StrictInt
 from crewai import Agent, Crew, LLM, Process, Task
 from crewai.tools import tool
 from praxis.config import Settings
@@ -32,7 +33,7 @@ def build_tools(business: BusinessTools):
         return business.calculate_business_metrics().model_dump_json()
 
     @tool('get_deadline_risks')
-    def get_deadline_risks(window_days: int = 7) -> str:
+    def get_deadline_risks(window_days: StrictInt = 7) -> str:
         """Retrieve active deadlines due within the window, including overdue records."""
         return business.get_deadline_risks(window_days).model_dump_json()
 
